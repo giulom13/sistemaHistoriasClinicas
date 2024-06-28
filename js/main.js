@@ -71,8 +71,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     `;
         });
       } else {
-        resultadosBusqueda.innerHTML =
-          "<p>No se encontró ningún paciente con ese nombre.</p>";
+        Toastify({
+          text: "Paciente no encontrado",
+          duration: 3000,
+          className: "notificacion",
+          style: {
+            background: "white",
+          },
+        }).showToast();
       }
     });
   }
