@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const formIngresoPaciente = document.getElementById("formIngresoPaciente");
   const formBusqueda = document.getElementById("formBusqueda");
   const resultadosBusqueda = document.getElementById("resultadosBusqueda");
-  const resultadoBusqueda = document.getElementById("resultadoBusqueda");
+  const resultadoBusquedaIndividual = document.getElementById(
+    "resultadoBusquedaIndividual"
+  );
 
   function generateUniqueId() {
     return "id-" + new Date().getTime();
@@ -32,11 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("pacientes", JSON.stringify(pacientes));
 
       Toastify({
-        text:"Historia Clinica creada correctamente",
+        text: "Historia Clinica creada correctamente",
         duration: 3000,
+        className: "notificacion",
         style: {
-          background: "black",
-        }
+          background: "white",
+        },
       }).showToast();
       formIngresoPaciente.reset();
     });
@@ -54,10 +57,10 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       resultadosBusqueda.innerHTML = "";
-      resultadoBusqueda.innerHTML = "";
+      resultadoBusquedaIndividual.innerHTML = "";
 
       if (pacientesEncontrados.length > 0) {
-        resultadosBusqueda.innerHTML = "<h3>Pacientes Encontrados</h3>";
+        resultadosBusqueda.innerHTML = `<h3>Pacientes Encontrados</h3>`;
         pacientesEncontrados.forEach((paciente) => {
           resultadosBusqueda.innerHTML += `
                         <div>
@@ -84,7 +87,7 @@ function verDetallesPaciente(id) {
       .map((entrada) => `<p>${entrada}</p>`)
       .join("");
 
-    document.getElementById("resultadoBusqueda").innerHTML = `
+    document.getElementById("resultadoBusquedaIndividual").innerHTML = `
             <h3>Detalles del Paciente</h3>
             <p>ID: ${paciente.id}</p>
             <p>Nombre y apellido: ${paciente.nombre}</p>

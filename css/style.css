@@ -88,7 +88,7 @@ form button:hover {
     background-color: #7a05b9;
 }
 
-#resultadosBusqueda div, #resultadoBusqueda div {
+#resultadosBusqueda div, #resultadoBusquedaIndividual div {
     background-color: white;
     padding: 20px;
     margin-bottom: 10px;
@@ -96,11 +96,11 @@ form button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#resultadosBusqueda div p, #resultadoBusqueda div p {
+#resultadosBusqueda div p, #resultadoBusquedaIndividual div p {
     margin: 5px 0;
 }
 
-#resultadosBusqueda div button, #boton-guardar, #resultadoBusqueda div button {
+#resultadosBusqueda div button, #boton-guardar, #resultadoBusquedaIndividual div button {
     background-color: #510c76;
     color: white;
     padding: 10px 20px;
@@ -112,6 +112,10 @@ form button:hover {
     margin-top: 10px;
 }
 
-#resultadosBusqueda div button:hover, #boton-guardar:hover, #resultadoBusqueda div button:hover {
+#resultadosBusqueda div button:hover, #boton-guardar:hover, #resultadoBusquedaIndividual div button:hover {
     background-color: #6a06a0;
+}
+
+.notificacion {
+    color: #510c76;
 }
