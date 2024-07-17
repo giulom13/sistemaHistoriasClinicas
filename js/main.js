@@ -1,3 +1,6 @@
+// Instalar json-server desde NPM (npm install -g json-server)
+
+// Utilizar el comando (json-server --watch pacientes.json --port 3000) en powershell para crear servidor local
 document.addEventListener("DOMContentLoaded", function () {
   const formIngresoPaciente = document.getElementById("formIngresoPaciente");
   const formBusqueda = document.getElementById("formBusqueda");
@@ -31,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
           text: "Historia Clinica creada correctamente",
           duration: 3000,
           className: "notificacion",
-          style: { background: "white" }
+          style: { background: "green", color: "white" }
         }).showToast();
         formIngresoPaciente.reset();
       })
@@ -43,11 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
     formBusqueda.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      const nombreBusqueda = document.getElementById("nombreBusqueda").value;
+      const nombreBusqueda = document.getElementById("nombreBusqueda").value.toLowerCase();
 
-      fetch(`http://localhost:3000/pacientes?nombre_like=${nombreBusqueda}`)
+      fetch(`http://localhost:3000/pacientes`)
         .then(response => response.json())
-        .then(pacientesEncontrados => {
+        .then(pacientes => {
+          const pacientesEncontrados = pacientes.filter(paciente => paciente.nombre.toLowerCase().includes(nombreBusqueda));
           resultadosBusqueda.innerHTML = "";
           resultadoBusquedaIndividual.innerHTML = "";
 
@@ -67,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
               text: "Paciente no encontrado",
               duration: 3000,
               className: "notificacion",
-              style: { background: "white" }
+              style: { background: "red", color: "white" }
             }).showToast();
           }
         })
@@ -85,6 +89,10 @@ function verDetallesPaciente(id) {
       document.getElementById("resultadoBusquedaIndividual").innerHTML = `
         <h3>Detalles del Paciente</h3>
         <p>ID: ${paciente.id}</p>
+        <p>Nombre y apellido: ${paciente.nombre}</p>
+        <p>Edad: ${paciente.edad}</p>
+        <p>Dirección: ${paciente.direccion}</p>
+        <p>Teléfono: ${paciente.telefono}</p>
         <h4>Historia Clínica</h4>
         <div id="historiaClinica-${paciente.id}">${historiaClinicaHtml}</div>
         <textarea id="nuevaEntrada-${paciente.id}" rows="8" cols="100" placeholder="Añadir nueva entrada"></textarea>
@@ -104,20 +112,23 @@ function guardarHistoriaClinica(id) {
       .then(response => response.json())
       .then(paciente => {
         paciente.historiaClinica.push(entradaConFecha);
-
-        fetch(`http://localhost:3000/pacientes/${id}`, {
+        return fetch(`http://localhost:3000/pacientes/${id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(paciente)
-        })
-        .then(response => response.json())
-        .then(data => {
-          const nuevaEntradaHtml = `<p>${fechaActual}: ${nuevaEntrada}</p>`;
-          document.getElementById(`historiaClinica-${id}`).innerHTML += nuevaEntradaHtml;
-          document.getElementById(`nuevaEntrada-${id}`).value = "";
-          alert("Historia clínica guardada con éxito");
-        })
-        .catch(error => console.error('Error:', error));
+        });
+      })
+      .then(response => response.json())
+      .then(data => {
+        const nuevaEntradaHtml = `<p>${fechaActual}: ${nuevaEntrada}</p>`;
+        document.getElementById(`historiaClinica-${id}`).innerHTML += nuevaEntradaHtml;
+        document.getElementById(`nuevaEntrada-${id}`).value = "";
+        Toastify({
+          text: "Historia clínica guardada con éxito",
+          duration: 3000,
+          className: "notificacion",
+          style: { background: "green", color: "white" }
+        }).showToast();
       })
       .catch(error => console.error('Error:', error));
   } else {

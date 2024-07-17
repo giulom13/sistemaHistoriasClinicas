@@ -15,6 +15,39 @@
       "direccion": "Salta 682",
       "telefono": "2634514306",
       "historiaClinica": []
+    },
+    {
+      "id": "id-1721251554979",
+      "nombre": "asdad",
+      "edad": "123",
+      "direccion": "asdasd",
+      "telefono": "12314",
+      "historiaClinica": [
+        {
+          "entrada": "asdasdasd",
+          "fecha": "17/7/2024"
+        },
+        {
+          "entrada": "ddddddddddaaaaaaaaaaa",
+          "fecha": "17/7/2024"
+        }
+      ]
+    },
+    {
+      "id": "id-1721251936808",
+      "nombre": "nose",
+      "edad": "987",
+      "direccion": "ni idea",
+      "telefono": "444555666",
+      "historiaClinica": []
+    },
+    {
+      "id": "id-1721252110752",
+      "nombre": "aaaaaaaaaa",
+      "edad": "222222222",
+      "direccion": "aaaaaaaa",
+      "telefono": "4444444444",
+      "historiaClinica": []
     }
   ]
 }
