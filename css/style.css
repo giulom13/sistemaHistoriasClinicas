@@ -41,6 +41,10 @@ nav ul li a {
 main {
     padding: 20px;
 }
+#textoIndex{
+    display: block;
+    text-align: center;
+}
 
 footer {
     background-color: #510c76;
@@ -118,4 +122,7 @@ form button:hover {
 
 .notificacion {
     color: #510c76;
+}
+.notificacionHistoriaClinica {
+    color: white;
 }

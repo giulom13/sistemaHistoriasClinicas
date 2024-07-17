@@ -1,0 +1,20 @@
+{
+  "pacientes": [
+    {
+      "id": "id-1721251276249",
+      "nombre": "Giulianno",
+      "edad": "30",
+      "direccion": "Salta 682",
+      "telefono": "2634514306",
+      "historiaClinica": []
+    },
+    {
+      "id": "id-1721251343076",
+      "nombre": "Giulianno Magistocchi",
+      "edad": "30",
+      "direccion": "Salta 682",
+      "telefono": "2634514306",
+      "historiaClinica": []
+    }
+  ]
+}
